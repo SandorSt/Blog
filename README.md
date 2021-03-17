@@ -1,0 +1,1 @@
+A simple Blog with Django, PostgreSQL, and Bootstrap
