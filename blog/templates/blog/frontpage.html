@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="card shadow">
+            <div class="card-body">
+            <h3 class=" card-title">{{ post.title }}</h3>
+            <h6 class=" card-subtitle text-muted mb-2">{{ post.intro }}</h6>
+            <p class="post blockquote-footer">{{ post.date_added }}</p>
+            <a href="{% url 'post_page' post.slug %}">Read</a>
+        </div>
+        </div>
+    {% endfor %}
+{% endblock %}

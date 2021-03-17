@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">{{ post.title }}</h1>
+        <small>Posted on {{ post.date_added }}</small>
+        <p>{{ post.intro }}</p>
+        <hr>
+        <p class="lead">{{ post.body }}</p>
+    </div>
+</div>
+<div class="container">
+    <h4>Add comment</h4>
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        {{ form.as_p}}
+
+        <div class="field">
+            <div class="control">
+                <button class="btn-dark">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <h4>Comments</h4>
+    
+    {% for comment in post.comments.all %}
+
+    <div class="media">
+        <div class="media-body">
+            <h6 >{{ comment.name }}</h6>
+            <p class="muted">{{ coment.date_added }}</p>
+            <hr>
+            <p> {{ comment.body_comment }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <div class="media">
+        <div class="media-body">
+            <h6>No comments yet</h6>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
